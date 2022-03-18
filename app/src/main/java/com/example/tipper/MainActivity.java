@@ -11,20 +11,18 @@ import android.widget.SeekBar.OnSeekBarChangeListener; // SeekBar listener
 import android.widget.TextView; // for displaying text
 
 import java.text.NumberFormat; // for currency formatting
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     // currency and height formatter objects
     private static final NumberFormat numberFormat =
-            NumberFormat.getNumberInstance();
-    private static final NumberFormat percentFormat =
-            NumberFormat.getPercentInstance();
+            NumberFormat.getInstance(Locale.GERMAN);
 
     private double weight = 0.0; // bill amount entered by the user
     private double height = 0.0; // initial tip percentage
-    private TextView amountTextView; // shows formatted bill amount
-    private TextView percentTextView; // shows tip percentage
-    private TextView tipTextView; // shows calculated tip amount
+    private TextView weightTextView; // shows formatted bill amount
+    private TextView heightTextView; // shows tip percentage
     private TextView bodyMassIndex; // shows calculated total bill amount
 
     // called when the activity is first created
@@ -34,58 +32,36 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main); // inflate the GUI
 
         // get references to programmatically manipulated TextViews
-        amountTextView = (TextView) findViewById(R.id.amountTextView);
-        percentTextView = (TextView) findViewById(R.id.percentTextView);
-        tipTextView = (TextView) findViewById(R.id.tipTextView);
-        bodyMassIndex = (TextView) findViewById(R.id.totalTextView);
-        tipTextView.setText(numberFormat.format(0));
+        weightTextView = (TextView) findViewById(R.id.weightTextView);
+        heightTextView = (TextView) findViewById(R.id.heightTextView);
+        bodyMassIndex = (TextView) findViewById(R.id.bmiTextView);
         bodyMassIndex.setText(numberFormat.format(0));
 
         // set amountEditText's TextWatcher
-        EditText amountEditText =
-                (EditText) findViewById(R.id.amountEditText);
-        amountEditText.addTextChangedListener(amountEditTextWatcher);
+        EditText weightEditText =
+                (EditText) findViewById(R.id.weightEditText);
+        weightEditText.addTextChangedListener(weightEditTextWatcher);
 
-        // set percentSeekBar's OnSeekBarChangeListener
-        SeekBar percentSeekBar =
-                (SeekBar) findViewById(R.id.percentSeekBar);
-        percentSeekBar.setOnSeekBarChangeListener(seekBarListener);
+        EditText heightEditText =
+                (EditText) findViewById(R.id.heightEditText);
+        heightEditText.addTextChangedListener(heightEditTextWatcher);
+
     }
 
     // calculate and display tip and total amounts
     private void calculate() {
-        // format height and display in percentTextView
-        percentTextView.setText(percentFormat.format(height));
+        // format height and display in heightTextView
+        heightTextView.setText(numberFormat.format(height));
 
-        // calculate the tip and total
-        double tip = weight * height;
+        // calculate BMI
         double total = weight * (height * height);
 
-        // display tip and total formatted as currency
-        tipTextView.setText(numberFormat.format(tip));
+        // display BMI
         bodyMassIndex.setText(numberFormat.format(total));
     }
 
-    // listener object for the SeekBar's progress changed events
-    private final OnSeekBarChangeListener seekBarListener =
-            new OnSeekBarChangeListener() {
-                // update height, then call calculate
-                @Override
-                public void onProgressChanged(SeekBar seekBar, int progress,
-                                              boolean fromUser) {
-                    height = progress / 100.0; // set height based on progress
-                    calculate(); // calculate and display tip and total
-                }
-
-                @Override
-                public void onStartTrackingTouch(SeekBar seekBar) { }
-
-                @Override
-                public void onStopTrackingTouch(SeekBar seekBar) { }
-            };
-
     // listener object for the EditText's text-changed events
-    private final TextWatcher amountEditTextWatcher = new TextWatcher() {
+    private final TextWatcher weightEditTextWatcher = new TextWatcher() {
         // called when the user modifies the bill amount
         @Override
         public void onTextChanged(CharSequence s, int start,
@@ -93,11 +69,37 @@ public class MainActivity extends AppCompatActivity {
 
             try { // get bill amount and display currency formatted value
                 weight = Double.parseDouble(s.toString());
-                amountTextView.setText(numberFormat.format(weight));
+                weightTextView.setText(numberFormat.format(weight));
             }
             catch (NumberFormatException e) { // if s is empty or non-numeric
-                amountTextView.setText("");
+                weightTextView.setText("");
                 weight = 0.0;
+            }
+
+            calculate(); // update the tip and total TextViews
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) { }
+
+        @Override
+        public void beforeTextChanged(
+                CharSequence s, int start, int count, int after) { }
+    };
+
+    private final TextWatcher heightEditTextWatcher = new TextWatcher() {
+        // called when the user modifies the bill amount
+        @Override
+        public void onTextChanged(CharSequence s, int start,
+                                  int before, int count) {
+
+            try { // get bill amount and display currency formatted value
+                height = Double.parseDouble(s.toString());
+                heightTextView.setText(numberFormat.format(height));
+            }
+            catch (NumberFormatException e) { // if s is empty or non-numeric
+                heightTextView.setText("");
+                height = 0.0;
             }
 
             calculate(); // update the tip and total TextViews
