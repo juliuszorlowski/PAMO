@@ -14,18 +14,18 @@ import java.text.NumberFormat; // for currency formatting
 
 public class MainActivity extends AppCompatActivity {
 
-    // currency and percent formatter objects
-    private static final NumberFormat currencyFormat =
-            NumberFormat.getCurrencyInstance();
+    // currency and height formatter objects
+    private static final NumberFormat numberFormat =
+            NumberFormat.getNumberInstance();
     private static final NumberFormat percentFormat =
             NumberFormat.getPercentInstance();
 
-    private double billAmount = 0.0; // bill amount entered by the user
-    private double percent = 0.15; // initial tip percentage
+    private double weight = 0.0; // bill amount entered by the user
+    private double height = 0.0; // initial tip percentage
     private TextView amountTextView; // shows formatted bill amount
     private TextView percentTextView; // shows tip percentage
     private TextView tipTextView; // shows calculated tip amount
-    private TextView totalTextView; // shows calculated total bill amount
+    private TextView bodyMassIndex; // shows calculated total bill amount
 
     // called when the activity is first created
     @Override
@@ -37,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
         amountTextView = (TextView) findViewById(R.id.amountTextView);
         percentTextView = (TextView) findViewById(R.id.percentTextView);
         tipTextView = (TextView) findViewById(R.id.tipTextView);
-        totalTextView = (TextView) findViewById(R.id.totalTextView);
-        tipTextView.setText(currencyFormat.format(0));
-        totalTextView.setText(currencyFormat.format(0));
+        bodyMassIndex = (TextView) findViewById(R.id.totalTextView);
+        tipTextView.setText(numberFormat.format(0));
+        bodyMassIndex.setText(numberFormat.format(0));
 
         // set amountEditText's TextWatcher
         EditText amountEditText =
@@ -54,26 +54,26 @@ public class MainActivity extends AppCompatActivity {
 
     // calculate and display tip and total amounts
     private void calculate() {
-        // format percent and display in percentTextView
-        percentTextView.setText(percentFormat.format(percent));
+        // format height and display in percentTextView
+        percentTextView.setText(percentFormat.format(height));
 
         // calculate the tip and total
-        double tip = billAmount * percent;
-        double total = billAmount + tip;
+        double tip = weight * height;
+        double total = weight * (height * height);
 
         // display tip and total formatted as currency
-        tipTextView.setText(currencyFormat.format(tip));
-        totalTextView.setText(currencyFormat.format(total));
+        tipTextView.setText(numberFormat.format(tip));
+        bodyMassIndex.setText(numberFormat.format(total));
     }
 
     // listener object for the SeekBar's progress changed events
     private final OnSeekBarChangeListener seekBarListener =
             new OnSeekBarChangeListener() {
-                // update percent, then call calculate
+                // update height, then call calculate
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress,
                                               boolean fromUser) {
-                    percent = progress / 100.0; // set percent based on progress
+                    height = progress / 100.0; // set height based on progress
                     calculate(); // calculate and display tip and total
                 }
 
@@ -92,12 +92,12 @@ public class MainActivity extends AppCompatActivity {
                                   int before, int count) {
 
             try { // get bill amount and display currency formatted value
-                billAmount = Double.parseDouble(s.toString()) / 100.0;
-                amountTextView.setText(currencyFormat.format(billAmount));
+                weight = Double.parseDouble(s.toString());
+                amountTextView.setText(numberFormat.format(weight));
             }
             catch (NumberFormatException e) { // if s is empty or non-numeric
                 amountTextView.setText("");
-                billAmount = 0.0;
+                weight = 0.0;
             }
 
             calculate(); // update the tip and total TextViews
