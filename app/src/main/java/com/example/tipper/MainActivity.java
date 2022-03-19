@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         heightTextView.setText(numberFormat.format(height));
 
         // calculate BMI
-        double total = weight * (height * height);
+        double total = weight / (height * height);
 
         // display BMI
         bodyMassIndex.setText(numberFormat.format(total));
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                                   int before, int count) {
 
             try { // get bill amount and display currency formatted value
-                weight = Double.parseDouble(s.toString());
+                weight = Double.parseDouble(s.toString()) / 100.0;
                 weightTextView.setText(numberFormat.format(weight));
             }
             catch (NumberFormatException e) { // if s is empty or non-numeric
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                                   int before, int count) {
 
             try { // get bill amount and display currency formatted value
-                height = Double.parseDouble(s.toString());
+                height = Double.parseDouble(s.toString()) / 100.0;
                 heightTextView.setText(numberFormat.format(height));
             }
             catch (NumberFormatException e) { // if s is empty or non-numeric
