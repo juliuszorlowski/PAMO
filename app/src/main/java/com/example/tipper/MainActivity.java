@@ -13,17 +13,20 @@ import android.widget.TextView; // for displaying text
 import java.text.NumberFormat; // for currency formatting
 import java.util.Locale;
 
+// BMI Calculator
+// Author: Juliusz Orłowski s19799 11c
+
 public class MainActivity extends AppCompatActivity {
 
-    // currency and height formatter objects
+    // weight and height formatter objects
     private static final NumberFormat numberFormat =
             NumberFormat.getInstance(Locale.GERMAN);
 
-    private double weight = 0.0; // bill amount entered by the user
-    private double height = 0.0; // initial tip percentage
-    private TextView weightTextView; // shows formatted bill amount
-    private TextView heightTextView; // shows tip percentage
-    private TextView bodyMassIndex; // shows calculated total bill amount
+    private double weight = 0.0; // weight entered by the user
+    private double height = 0.0; // weight entered by the user
+    private TextView weightTextView; // shows entered weight
+    private TextView heightTextView; // shows entered height
+    private TextView bodyMassIndex; // shows calculated BMI
 
     // called when the activity is first created
     @Override
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // calculate and display tip and total amounts
+    // calculate and display BMI amounts
     private void calculate() {
         // format height and display in heightTextView
         heightTextView.setText(numberFormat.format(height));
@@ -62,12 +65,12 @@ public class MainActivity extends AppCompatActivity {
 
     // listener object for the EditText's text-changed events
     private final TextWatcher weightEditTextWatcher = new TextWatcher() {
-        // called when the user modifies the bill amount
+        // called when the user modifies the weight
         @Override
         public void onTextChanged(CharSequence s, int start,
                                   int before, int count) {
 
-            try { // get bill amount and display currency formatted value
+            try { // get weight and display formatted value
                 weight = Double.parseDouble(s.toString()) / 100.0;
                 weightTextView.setText(numberFormat.format(weight));
             }
@@ -88,12 +91,12 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private final TextWatcher heightEditTextWatcher = new TextWatcher() {
-        // called when the user modifies the bill amount
+        // called when the user modifies the height
         @Override
         public void onTextChanged(CharSequence s, int start,
                                   int before, int count) {
 
-            try { // get bill amount and display currency formatted value
+            try { // get height and display formatted value
                 height = Double.parseDouble(s.toString()) / 100.0;
                 heightTextView.setText(numberFormat.format(height));
             }
