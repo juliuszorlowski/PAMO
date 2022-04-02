@@ -2,11 +2,9 @@ package com.example.tipper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable; // for EditText event handling
 import android.text.TextWatcher; // EditText listener
-import android.view.View;
 import android.widget.EditText; // for bill amount input
 import android.widget.SeekBar; // for changing the tip percentage
 import android.widget.SeekBar.OnSeekBarChangeListener; // SeekBar listener
@@ -51,26 +49,6 @@ public class MainActivity extends AppCompatActivity {
                 (EditText) findViewById(R.id.heightEditText);
         heightEditText.addTextChangedListener(heightEditTextWatcher);
 
-    }
-
-    public void launchLogo(View v){
-        Intent i = new Intent(this, LogoActivity.class);
-        startActivity(i);
-    }
-
-    public void launchMain(View v){
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
-    }
-
-    public void launchCalories(View v){
-        Intent i = new Intent(this, CaloriesActivity.class);
-        startActivity(i);
-    }
-
-    public void launchRecipes(View v){
-        Intent i = new Intent(this, RecipesActivity.class);
-        startActivity(i);
     }
 
     // calculate and display BMI amounts

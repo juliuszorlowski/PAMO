@@ -2,5 +2,8 @@
    <string name="app_name">BMI Calculator</string>
    <string name="enter_weight">Enter weight</string>
    <string name="enter_height">Enter height</string>
+   <string name="logo">Logo</string>
    <string name="bmi">BMI</string>
+   <string name="calories">Calories</string>
+   <string name="recipes">Recipes</string>
 </resources>
