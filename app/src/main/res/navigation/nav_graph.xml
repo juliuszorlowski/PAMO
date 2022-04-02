@@ -3,27 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/firstFragment">
+    app:startDestination="@id/logoFragment">
 
     <fragment
-        android:id="@+id/firstFragment"
+        android:id="@+id/logoFragment"
         android:name="com.example.tipper.LogoFragment"
-        android:label="fragment_first"
+        android:label="fragment_logo"
         tools:layout="@layout/fragment_logo" >
         <action
             android:id="@+id/navigateToBMIFragment"
-            app:destination="@id/secondFragment"
+            app:destination="@id/bmiFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_logoFragment_to_caloriesFragment"
+            app:destination="@id/caloriesFragment" />
     </fragment>
     <fragment
-        android:id="@+id/secondFragment"
+        android:id="@+id/bmiFragment"
         android:name="com.example.tipper.BMIFragment"
-        android:label="fragment_second"
+        android:label="fragment_bmi"
         tools:layout="@layout/fragment_bmi" >
         <action
             android:id="@+id/navigateToLogoFragment"
-            app:destination="@id/firstFragment"
+            app:destination="@id/logoFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
     </fragment>
@@ -31,7 +34,11 @@
         android:id="@+id/caloriesFragment"
         android:name="com.example.tipper.CaloriesFragment"
         android:label="fragment_calories"
-        tools:layout="@layout/fragment_calories" />
+        tools:layout="@layout/fragment_calories" >
+        <action
+            android:id="@+id/action_caloriesFragment_to_logoFragment"
+            app:destination="@id/logoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/recipesFragment"
         android:name="com.example.tipper.RecipesFragment"
