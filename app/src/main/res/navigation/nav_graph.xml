@@ -9,9 +9,9 @@
         android:id="@+id/firstFragment"
         android:name="com.example.tipper.LogoFragment"
         android:label="fragment_first"
-        tools:layout="@layout/fragment_first" >
+        tools:layout="@layout/fragment_logo" >
         <action
-            android:id="@+id/navigateToSecondFragment"
+            android:id="@+id/navigateToBMIFragment"
             app:destination="@id/secondFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
@@ -20,9 +20,9 @@
         android:id="@+id/secondFragment"
         android:name="com.example.tipper.BMIFragment"
         android:label="fragment_second"
-        tools:layout="@layout/fragment_second" >
+        tools:layout="@layout/fragment_bmi" >
         <action
-            android:id="@+id/navigateToFirstFragment"
+            android:id="@+id/navigateToLogoFragment"
             app:destination="@id/firstFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
