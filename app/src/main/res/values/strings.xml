@@ -2,13 +2,8 @@
    <string name="app_name">BMI Calculator</string>
    <string name="enter_weight">Enter weight</string>
    <string name="enter_height">Enter height</string>
-   <string name="enter_age">Enter age</string>
    <string name="bmi">BMI</string>
    <string name="logo">Logo</string>
    <string name="calories">Calories</string>
    <string name="recipes">recipes</string>
-   <string name="recipe1_title">Quick fried rice</string>
-   <string name="recipe1_content">Heat the oil in a frying pan, then tip in the egg. Leave to set for 30 secs-1 min, swirling every now and again, then tip it out and finely slice. Add the bacon and mushrooms to pan, then fry until golden, about 3 mins. Add the peas, garlic and ginger, then cook for 1 min.</string>
-   <string name="recipe2_title">Pork noodle stir-fry</string>
-   <string name="recipe2_content">Heat the oil in a wok or frying pan. Add the mince, break it up with a spoon and fry over a high heat for about 8 mins until browning. While the meat cooks, boil a kettle, then pour the hot water over the noodles. Set aside for 5-10 mins to soften.</string>
 </resources>
