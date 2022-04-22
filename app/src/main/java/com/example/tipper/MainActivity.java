@@ -3,12 +3,22 @@ package com.example.tipper;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+import com.example.tipper.databinding.ActivityMainBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import android.text.Editable; // for EditText event handling
 import android.text.TextWatcher; // EditText listener
 import android.widget.EditText; // for bill amount input
 import android.widget.SeekBar; // for changing the tip percentage
 import android.widget.SeekBar.OnSeekBarChangeListener; // SeekBar listener
 import android.widget.TextView; // for displaying text
+
+import androidx.appcompat.app.AppCompatActivity;
+
 
 import java.text.NumberFormat; // for currency formatting
 import java.util.Locale;
@@ -17,6 +27,8 @@ import java.util.Locale;
 // Author: Juliusz Orłowski s19799 11c
 
 public class MainActivity extends AppCompatActivity {
+
+    private ActivityMainBinding binding;
 
 //    // weight and height formatter objects
 //    private static final NumberFormat numberFormat =
@@ -32,7 +44,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); // call superclass onCreate
-        setContentView(R.layout.activity_main); // inflate the GUI
+
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.navigation_logo, R.id.navigation_bmi, R.id.navigation_calories, R.id.navigation_recipes)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(binding.navView, navController);
+
+//        setContentView(R.layout.activity_main); // inflate the GUI
 
 //        // get references to programmatically manipulated TextViews
 //        weightTextView = (TextView) findViewById(R.id.weightTextView);

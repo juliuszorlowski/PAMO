@@ -29,11 +29,11 @@ public class BMIFragment extends Fragment {
         NavController navController = Navigation.findNavController(view);
 
         Button button = view.findViewById(R.id.logoButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navController.navigate(R.id.navigateToLogoFragment);
-            }
-        });
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                navController.navigate(R.id.navigateToLogoFragment);
+//            }
+//        });
     }
 }

@@ -3,45 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/logoFragment">
+    app:startDestination="@id/navigation_logo">
 
     <fragment
-        android:id="@+id/logoFragment"
+        android:id="@+id/navigation_logo"
         android:name="com.example.tipper.LogoFragment"
-        android:label="fragment_logo"
-        tools:layout="@layout/fragment_logo" >
-        <action
-            android:id="@+id/navigateToBMIFragment"
-            app:destination="@id/bmiFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out" />
-        <action
-            android:id="@+id/action_logoFragment_to_caloriesFragment"
-            app:destination="@id/caloriesFragment" />
-    </fragment>
+        android:label="@string/logo"
+        tools:layout="@layout/fragment_logo" />
     <fragment
-        android:id="@+id/bmiFragment"
+        android:id="@+id/navigation_bmi"
         android:name="com.example.tipper.BMIFragment"
-        android:label="fragment_bmi"
-        tools:layout="@layout/fragment_bmi" >
-        <action
-            android:id="@+id/navigateToLogoFragment"
-            app:destination="@id/logoFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out" />
-    </fragment>
+        android:label="@string/bmi"
+        tools:layout="@layout/fragment_bmi" />
     <fragment
-        android:id="@+id/caloriesFragment"
+        android:id="@+id/navigation_calories"
         android:name="com.example.tipper.CaloriesFragment"
-        android:label="fragment_calories"
-        tools:layout="@layout/fragment_calories" >
-        <action
-            android:id="@+id/action_caloriesFragment_to_logoFragment"
-            app:destination="@id/logoFragment" />
-    </fragment>
+        android:label="@string/calories"
+        tools:layout="@layout/fragment_calories" />
     <fragment
-        android:id="@+id/recipesFragment"
+        android:id="@+id/navigation_recipes"
         android:name="com.example.tipper.RecipesFragment"
-        android:label="fragment_recipes"
+        android:label="@string/recipes"
         tools:layout="@layout/fragment_recipes" />
 </navigation>
