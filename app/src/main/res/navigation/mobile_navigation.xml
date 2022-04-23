@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.tipper.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/nav_bmi"
+        android:name="com.example.tipper.BMIFragment"
+        android:label="@string/bmi"
+        tools:layout="@layout/fragment_bmi" />
+    <fragment
+        android:id="@+id/nav_calories"
+        android:name="com.example.tipper.CaloriesFragment"
+        android:label="@string/calories"
+        tools:layout="@layout/fragment_calories" />
+    <fragment
+        android:id="@+id/nav_recipes"
+        android:name="com.example.tipper.RecipesFragment"
+        android:label="@string/recipes"
+        tools:layout="@layout/fragment_recipes" />
+    <fragment
+        android:id="@+id/nav_graph"
+        android:name="com.example.tipper.GraphFragment"
+        android:label="@string/graph"
+        tools:layout="@layout/fragment_graph" />
+    <fragment
+        android:id="@+id/nav_quiz"
+        android:name="com.example.tipper.QuizFragment"
+        android:label="@string/quiz"
+        tools:layout="@layout/fragment_quiz" />
+</navigation>

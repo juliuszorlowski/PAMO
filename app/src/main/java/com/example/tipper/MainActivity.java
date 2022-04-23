@@ -3,15 +3,21 @@ package com.example.tipper;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.example.tipper.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 import android.text.Editable; // for EditText event handling
 import android.text.TextWatcher; // EditText listener
+import android.view.Menu;
+import android.view.View;
 import android.widget.EditText; // for bill amount input
 import android.widget.SeekBar; // for changing the tip percentage
 import android.widget.SeekBar.OnSeekBarChangeListener; // SeekBar listener
@@ -28,6 +34,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
+    private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
 //    // weight and height formatter objects
@@ -43,19 +50,22 @@ public class MainActivity extends AppCompatActivity {
     // called when the activity is first created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState); // call superclass onCreate
+        super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_logo, R.id.navigation_bmi, R.id.navigation_calories, R.id.navigation_recipes)
+        DrawerLayout drawer = binding.drawerLayout;
+        NavigationView navigationView = binding.navView;
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_home, R.id.nav_bmi, R.id.nav_calories, R.id.nav_recipes, R.id.nav_graph, R.id.nav_quiz)
+                .setOpenableLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.navView, navController);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
 
 //        setContentView(R.layout.activity_main); // inflate the GUI
 
@@ -74,6 +84,13 @@ public class MainActivity extends AppCompatActivity {
 //                (EditText) findViewById(R.id.heightEditText);
 //        heightEditText.addTextChangedListener(heightEditTextWatcher);
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
     }
 
     // calculate and display BMI amounts

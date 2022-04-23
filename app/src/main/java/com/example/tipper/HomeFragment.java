@@ -13,13 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class LogoFragment extends Fragment {
+public class HomeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_logo, container, false);
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
     @Override
@@ -29,11 +29,5 @@ public class LogoFragment extends Fragment {
         NavController navController = Navigation.findNavController(view);
 
         Button button = view.findViewById(R.id.bmiButton);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                navController.navigate(R.id.navigateToBMIFragment);
-//            }
-//        });
     }
 }
