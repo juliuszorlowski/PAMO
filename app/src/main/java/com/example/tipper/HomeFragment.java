@@ -21,13 +21,4 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        NavController navController = Navigation.findNavController(view);
-
-        Button button = view.findViewById(R.id.bmiButton);
-    }
 }
