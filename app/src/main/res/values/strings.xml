@@ -17,4 +17,7 @@
     <string name="recipe1_content">Heat the oil in a frying pan, then tip in the egg. Leave to set for 30 secs-1 min, swirling every now and again, then tip it out and finely slice. Add the bacon and mushrooms to pan, then fry until golden, about 3 mins. Add the peas, garlic and ginger, then cook for 1 min.</string>
     <string name="recipe2_title">Pork noodle stir-fry</string>
     <string name="recipe2_content">Heat the oil in a wok or frying pan. Add the mince, break it up with a spoon and fry over a high heat for about 8 mins until browning. While the meat cooks, boil a kettle, then pour the hot water over the noodles. Set aside for 5-10 mins to soften.</string>
+    <string name="count_label">Q%d</string>
+    <string name="question_label">Question</string>
+    <string name="btn_answer">Choice</string>
 </resources>
